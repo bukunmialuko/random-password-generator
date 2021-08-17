@@ -21,14 +21,3 @@ public class Main {
     }
 }
 
-
-
-
-
-
-//        Random random = new SecureRandom();
-////        Random r = new Random();
-//        int low = 5;
-//        int high = 6;
-//        int result = random.nextInt(high-low) + low;
-//        System.out.println("===> GENERATED PASSWORD : " + result);

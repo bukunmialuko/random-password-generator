@@ -25,7 +25,6 @@ public class RandomPasswordGenerator {
                                 getRandomAlphabets((Integer) rules.get("minNoOfLowerCase"), false))));
 
         List<Character> charList = pwdStream.collect(Collectors.toList());
-//        int remainingPasswordLength = passwordLength - charList.size();
 
         Stream<Character> extraPwdStream = getRandomAlphabets(diffRandomPasswordLengthAndMinChar, true);
         charList.addAll(extraPwdStream.collect(Collectors.toList()));
