@@ -15,6 +15,9 @@ public class RandomPasswordGenerator {
     public String generateSecureRandomPasswordWithRules(HashMap<String, Object> rules) {
 
         int minimumPasswordLength = (Integer) rules.get("minLength");
+        int maximumPasswordLength = (Integer) rules.get("maxLength");
+        int randomPasswordLength = random.nextInt(maximumPasswordLength - minimumPasswordLength) + minimumPasswordLength;
+        int diffRandomPasswordLengthAndMinChar = randomPasswordLength - minimumPasswordLength;
 
         Stream<Character> pwdStream = Stream.concat(getRandomNumbers((Integer) rules.get("minNoOfDigits")),
                 Stream.concat(getRandomSpecialChars((Integer) rules.get("minNoSpecialCharacters")),
@@ -22,9 +25,9 @@ public class RandomPasswordGenerator {
                                 getRandomAlphabets((Integer) rules.get("minNoOfLowerCase"), false))));
 
         List<Character> charList = pwdStream.collect(Collectors.toList());
-        int remainingPasswordLength = minimumPasswordLength - charList.size();
+//        int remainingPasswordLength = passwordLength - charList.size();
 
-        Stream<Character> extraPwdStream = getRandomAlphabets(remainingPasswordLength, true);
+        Stream<Character> extraPwdStream = getRandomAlphabets(diffRandomPasswordLengthAndMinChar, true);
         charList.addAll(extraPwdStream.collect(Collectors.toList()));
 
         Collections.shuffle(charList);
