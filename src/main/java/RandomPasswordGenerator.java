@@ -10,18 +10,12 @@ import java.util.stream.Stream;
 
 public class RandomPasswordGenerator {
 
-    /**
-     * Special characters allowed in password.
-     */
-    public static final String ALLOWED_SPL_CHARACTERS = "!@#$%^&*()_+";
-
-    public static final String ERROR_CODE = "ERRONEOUS_SPECIAL_CHARS";
-
     Random random = new SecureRandom();
 
     public String generateSecureRandomPasswordWithRules(HashMap<String, Object> rules) {
 
         int minimumPasswordLength = (Integer) rules.get("minLength");
+
         Stream<Character> pwdStream = Stream.concat(getRandomNumbers((Integer) rules.get("minNoOfDigits")),
                 Stream.concat(getRandomSpecialChars((Integer) rules.get("minNoSpecialCharacters")),
                         Stream.concat(getRandomAlphabets((Integer) rules.get("minNoOfUpperCase"), true),
